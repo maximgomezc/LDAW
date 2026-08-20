@@ -15,6 +15,8 @@ const arregloPublicaciones = [
     new publicacion("banana", "amarilla", arregloUsuarios[0])
 ];
 
+arregloUsuarios[0].email= "porotos@gmail.com"
+
 const publicacionKiwi = arregloPublicaciones.find(p => p.titulo === "kiwi");
 if (publicacionKiwi) {
     publicacionKiwi.activa = false;
@@ -22,5 +24,10 @@ if (publicacionKiwi) {
 
 arregloPublicaciones.forEach(p => {
     console.log(p.mostrarResumen(p.titulo, p.usuario), p.estaActiva(p.activa));
-});
+}); 
 
+const publicacionesActivas = arregloPublicaciones.filter(p => p.activa)
+console.log(publicacionesActivas) 
+
+const primeraPublicacion = arregloPublicaciones.find(p => p.usuario.nombre === "luca")
+console.log(primeraPublicacion)
