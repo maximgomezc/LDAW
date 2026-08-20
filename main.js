@@ -7,7 +7,7 @@ const arregloPublicaciones= [
     new publicacion("kiwi", "peludo", "mono")
 ]
 
-arregloPublicaciones.find(publicacion.titulo==="kiwi") => publicacion.activa=false
+const encontrado= arregloPublicaciones.find(publicacion.titulo==="kiwi") => publicacion.activa=false
 
 arregloPublicaciones.forEach(p => {
     console.log(mostrarResumen(this.titulo, this.autor), estaActiva(this.activa))

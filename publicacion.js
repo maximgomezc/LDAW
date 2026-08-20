@@ -1,13 +1,15 @@
+import usuario from "./usuario.js"
+
 class publicacion {
-    constructor(titulo, descripcion, autor) {
+    constructor(titulo, descripcion, usuario) {
        this.titulo= titulo 
        this.descripcion= descripcion
-       this.autor= autor
+       this.usuario= usuario //objeto usuario
        this.fechaPublicacion= new Date()
        this.activa= true
     }
 
-    mostrarResumen = (titulo, autor) => (`El título es ${titulo} y el autor es ${autor}`);
+    mostrarResumen = (titulo, autor) => (`El título es ${titulo} y el autor es ${usuario.nombre}`);
     estaActiva = (activa) => (activa);
 }
 export default publicacion

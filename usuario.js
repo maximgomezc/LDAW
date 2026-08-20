@@ -6,3 +6,4 @@ class usuario{
     }
     mostrarPerfil = (nombre, email) => (`El nombre es:${nombre} y el email es:${email}`)
 }
+export default usuario
