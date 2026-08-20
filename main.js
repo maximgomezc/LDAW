@@ -15,6 +15,20 @@ const arregloUsuarios= [
     new usuario ("seba", "sebapulles@gmail.com")
 ]
 
+arregloUsuarios[0].publicaciones =[
+    arregloPublicaciones[0],
+    arregloPublicaciones[1]
+];
+
+arregloUsuarios[1].publicaciones =[
+    arregloPublicaciones[2]
+];
+
+arregloUsuarios[2].publicaciones =[
+    arregloPublicaciones[3],
+    arregloPublicaciones[4]
+];
+
 const publicacionKiwi = arregloPublicaciones.find(p => p.titulo === "kiwi");
 if (publicacionKiwi) {
     publicacionKiwi.activa = false;
