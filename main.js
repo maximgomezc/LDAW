@@ -1,5 +1,6 @@
 import publicacion from "./publicacion.js";
 import usuario from "./usuario.js";
+import publicaciones from "./RepositorioPublicaciones.js";
 
 const arregloUsuarios= [
     new usuario("luca","lucakisner@gmail.com"),
@@ -25,6 +26,21 @@ if (publicacionKiwi) {
 arregloPublicaciones.forEach(p => {
     console.log(p.mostrarResumen(p.titulo, p.usuario), p.estaActiva(p.activa));
 }); 
+
+const repositorio = new RepositorioPublicaciones();
+
+arregloPublicaciones.forEach(p => {
+    repositorio.agregar(p);
+});
+
+console.log("Publicaciones de luca:");
+console.log(repositorio.buscarPorUsuario("luca"));
+
+console.log("Publicaciones de max:");
+console.log(repositorio.buscarPorUsuario("max"));
+
+console.log("Publicaciones de seba:");
+console.log(repositorio.buscarPorUsuario("seba"));
 
 const publicacionesActivas = arregloPublicaciones.filter(p => p.activa)
 console.log(publicacionesActivas) 
