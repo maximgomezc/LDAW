@@ -33,6 +33,9 @@ arregloPublicaciones.forEach(p => {
     repositorio.agregarPublicacion(p);
 });
 
+console.log("Cantidad total de publicaciones:");
+console.log(repositorio.cantidadTotal());
+
 console.log("Publicaciones de luca:");
 console.log(repositorio.buscarPorUsuario("luca"));
 
