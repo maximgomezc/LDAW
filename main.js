@@ -1,4 +1,4 @@
-import publicacion from "./publicacion.js";
+import Publicacion from "./Publicacion.js";
 import usuario from "./usuario.js";
 import RepositorioPublicaciones from "./RepositorioPublicaciones.js";
 
@@ -9,11 +9,11 @@ const arregloUsuarios = [
 ]
 
 const arregloPublicaciones = [
-    new publicacion("porotos", "frijoles", arregloUsuarios[0]),
-    new publicacion("manzanas", "naranjas", arregloUsuarios[2]),
-    new publicacion("berenjena", "violeta", arregloUsuarios[1]),
-    new publicacion("kiwi", "peludo", arregloUsuarios[1]),
-    new publicacion("banana", "amarilla", arregloUsuarios[0])
+    new Publicacion("porotos", "frijoles", arregloUsuarios[0]),
+    new Publicacion("manzanas", "naranjas", arregloUsuarios[2]),
+    new Publicacion("berenjena", "violeta", arregloUsuarios[1]),
+    new Publicacion("kiwi", "peludo", arregloUsuarios[1]),
+    new Publicacion("banana", "amarilla", arregloUsuarios[0])
 ];
 
 arregloUsuarios[0].email = "porotos@gmail.com"

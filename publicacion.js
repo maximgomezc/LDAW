@@ -1,6 +1,6 @@
 import usuario from "./usuario.js"
 
-class publicacion {
+class Publicacion {
     constructor(titulo, descripcion, usuario) {
        this.titulo= titulo 
        this.descripcion= descripcion
@@ -12,4 +12,4 @@ class publicacion {
     mostrarResumen = (titulo, usuario) => (`El título es ${titulo} y el autor es ${usuario.nombre}`);
     estaActiva = (activa) => (activa);
 }
-export default publicacion
+export default Publicacion
