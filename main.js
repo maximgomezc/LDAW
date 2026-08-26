@@ -1,4 +1,6 @@
 import Publicacion from "./Publicacion.js";
+import PublicacionServicio from "./PublicacionServicio.js";
+import PublicacionVenta from "./PublicacionVenta.js";
 import usuario from "./usuario.js";
 import RepositorioPublicaciones from "./RepositorioPublicaciones.js";
 
@@ -9,11 +11,11 @@ const arregloUsuarios = [
 ]
 
 const arregloPublicaciones = [
-    new Publicacion("porotos", "frijoles", arregloUsuarios[0]),
-    new Publicacion("manzanas", "naranjas", arregloUsuarios[2]),
-    new Publicacion("berenjena", "violeta", arregloUsuarios[1]),
-    new Publicacion("kiwi", "peludo", arregloUsuarios[1]),
-    new Publicacion("banana", "amarilla", arregloUsuarios[0])
+    new PublicacionServicio("Clases de matemática", "Apoyo para nivel secundario", arregloUsuarios[0], 2500, "virtual"),
+    new PublicacionVenta("manzanas", "Naranjas frescas", arregloUsuarios[2], 1800),
+    new PublicacionServicio("Tutoría de programación", "Introducción a JavaScript", arregloUsuarios[1], 3000),
+    new PublicacionVenta("kiwi", "Kiwi fresco", arregloUsuarios[1], 1200),
+    new PublicacionServicio("Clases de inglés", "Conversación y gramática", arregloUsuarios[0], 2800, "presencial")
 ];
 
 arregloUsuarios[0].email = "porotos@gmail.com"
@@ -30,7 +32,7 @@ arregloPublicaciones.forEach(p => {
 const repositorio = new RepositorioPublicaciones();
 
 arregloPublicaciones.forEach(p => {
-    repositorio.agregarPublicacion(p);
+    repositorio.agregar(p);
 });
 
 console.log("Cantidad total de publicaciones:");
@@ -40,7 +42,11 @@ console.log("Publicaciones de luca:");
 console.log(repositorio.buscarPorUsuario("luca"));
 
 console.log("Publicaciones de max:");
-console.log(repositorio.buscarPorUsuario("max"));
+const publicacionesDeMax = repositorio.buscarPorUsuario("max");
+console.log(publicacionesDeMax);
+console.log("Max tiene una PublicacionServicio:", publicacionesDeMax.some(p => p instanceof PublicacionServicio));
+console.log("Max tiene una PublicacionVenta:", publicacionesDeMax.some(p => p instanceof PublicacionVenta));
+
 
 console.log("Publicaciones de seba:");
 console.log(repositorio.buscarPorUsuario("seba"));
