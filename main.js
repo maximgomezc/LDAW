@@ -75,4 +75,19 @@ console.log("--- Filtrar por tipo: PublicacionVenta ---");
 console.log(repositorio.filtrarPorTipo(PublicacionVenta));
 
 console.log("--- Filtrar por tipo: PublicacionServicio ---");
-console.log(repositorio.filtrarPorTipo(PublicacionServicio));
+console.log(repositorio.filtrarPorTipo(PublicacionServicio));
+
+const publicarConDemora = (publicacion, callback) => {
+    setTimeout(() => {
+        repositorio.agregar(publicacion);
+        callback();
+    }, 2000);
+};
+
+const nuevaPubPrueba = new PublicacionVenta("Libro JS", "Guia", arregloUsuarios[0], 1000);
+
+publicarConDemora(nuevaPubPrueba, () => {
+    console.log("Terminó de publicarse con demora.");
+});
+
+console.log("El código sigue ejecutándose mientras esperamos al setTimeout.");
