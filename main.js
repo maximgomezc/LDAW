@@ -11,28 +11,25 @@ const arregloUsuarios = [
 ]
 
 const arregloPublicaciones = [
-    new PublicacionServicio("Clases de matemática", "Apoyo para nivel secundario", arregloUsuarios[0], 2500, "virtual"),
+    new PublicacionServicio("Clases de matemática", "Apoyo para nivel secundario", arregloUsuarios[0], 2500, "virtual", 2),
     new PublicacionVenta("manzanas", "Naranjas frescas", arregloUsuarios[2], 1800),
-    new PublicacionServicio("Tutoría de programación", "Introducción a JavaScript", arregloUsuarios[1], 3000),
+    new PublicacionServicio("Tutoría de programación", "Introducción a JavaScript", arregloUsuarios[1], 3000, "presencial", 1),
     new PublicacionVenta("kiwi", "Kiwi fresco", arregloUsuarios[1], 1200),
-    new PublicacionServicio("Clases de inglés", "Conversación y gramática", arregloUsuarios[0], 2800, "presencial")
+    new PublicacionServicio("Clases de inglés", "Conversación y gramática", arregloUsuarios[0], 2800, "presencial", 1.5),
+    new PublicacionServicio("Apoyo de física", "Preparación para exámenes", arregloUsuarios[2], 3200, "virtual", 2),
+    new PublicacionVenta("bananas", "Bananas frescas", arregloUsuarios[0], 1500)
 ];
 
 arregloUsuarios[0].email = "porotos@gmail.com"
 
 const publicacionKiwi = arregloPublicaciones.find(p => p.titulo === "kiwi");
-if (publicacionKiwi) {
-    publicacionKiwi.activa = false;
-}
-
-arregloPublicaciones.forEach(p => {
-    console.log(p.mostrarResumen(p.titulo, p.usuario), p.estaActiva(p.activa));
-});
+publicacionKiwi.activa = false;
 
 const repositorio = new RepositorioPublicaciones();
 
 arregloPublicaciones.forEach(p => {
     repositorio.agregar(p);
+    console.log(p.mostrarResumen(), p.estaActiva(p.activa));
 });
 
 console.log("Cantidad total de publicaciones:");
@@ -42,10 +39,7 @@ console.log("Publicaciones de luca:");
 console.log(repositorio.buscarPorUsuario("luca"));
 
 console.log("Publicaciones de max:");
-const publicacionesDeMax = repositorio.buscarPorUsuario("max");
-console.log(publicacionesDeMax);
-console.log("Max tiene una PublicacionServicio:", publicacionesDeMax.some(p => p instanceof PublicacionServicio));
-console.log("Max tiene una PublicacionVenta:", publicacionesDeMax.some(p => p instanceof PublicacionVenta));
+console.log(repositorio.buscarPorUsuario("max"));
 
 
 console.log("Publicaciones de seba:");

@@ -9,7 +9,9 @@ class Publicacion {
        this.activa= true
     }
 
-    mostrarResumen = (titulo, usuario) => (`El título es ${titulo} y el autor es ${usuario.nombre}`);
+    mostrarResumen(titulo = this.titulo, usuario = this.usuario) {
+        return `El título es ${titulo} y el autor es ${usuario.nombre}`;
+    }
     estaActiva = (activa) => (activa);
 }
 export default Publicacion

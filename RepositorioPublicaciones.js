@@ -1,6 +1,6 @@
 class RepositorioPublicaciones {
-    constructor(publicaciones) {
-    this.publicaciones = []
+    constructor(publicaciones = []) {
+    this.publicaciones = publicaciones
     }
     agregar = (publicacion) => (this.publicaciones.push(publicacion))
     agregarPublicacion = (publicacion) => (this.agregar(publicacion))
