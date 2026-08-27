@@ -90,4 +90,22 @@ publicarConDemora(nuevaPubPrueba, () => {
     console.log("Terminó de publicarse con demora.");
 });
 
-console.log("El código sigue ejecutándose mientras esperamos al setTimeout.");
+console.log("El código sigue ejecutándose mientras esperamos al setTimeout.");
+
+const publicarConDemoraAsync = (publicacion) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            repositorio.agregar(publicacion);
+            resolve();
+        }, 2000);
+    });
+};
+
+const probarAsync = async () => {
+    const nuevaPubAsync = new PublicacionVenta("Libro Node", "Guia", arregloUsuarios[1], 2000);
+    await publicarConDemoraAsync(nuevaPubAsync);
+    console.log("Terminó publicarConDemoraAsync.");
+};
+
+probarAsync();
+console.log("Sigue corriendo despues de probarAsync.");
