@@ -1,16 +1,16 @@
 import usuario from "./usuario.js"
 
 class Publicacion {
-    constructor(titulo, descripcion, usuario) {
+    constructor(titulo, descripcion, autor) {
        this.titulo= titulo 
        this.descripcion= descripcion
-       this.usuario= usuario //objeto usuario
+       this.autor= autor //objeto usuario
        this.fechaPublicacion= new Date()
        this.activa= true
     }
 
-    mostrarResumen(titulo = this.titulo, usuario = this.usuario) {
-        return `El título es ${titulo} y el autor es ${usuario.nombre}`;
+    mostrarResumen(titulo = this.titulo, autor = this.autor) {
+        return `El título es ${titulo} y el autor es ${autor.nombre}`;
     }
     estaActiva = (activa) => (activa);
 }

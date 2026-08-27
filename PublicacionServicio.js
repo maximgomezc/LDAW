@@ -1,11 +1,12 @@
 import Publicacion from "./Publicacion.js";
 
 class PublicacionServicio extends Publicacion {
-	constructor(titulo, descripcion, usuario, precio, modalidad = "presencial", duracion = 1) {
-		super(titulo, descripcion, usuario);
+	constructor(titulo, descripcion, autor, precio, modalidad = "presencial", duracion = 1, cliente = null) {
+		super(titulo, descripcion, autor);
 		this.precio = precio;
 		this.modalidad = modalidad;
 		this.duracion = duracion;
+		this.cliente = cliente;
 	}
 
 	mostrarResumen() {

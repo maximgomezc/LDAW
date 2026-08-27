@@ -4,7 +4,7 @@ class RepositorioPublicaciones {
     }
     agregar = (publicacion) => (this.publicaciones.push(publicacion))
     agregarPublicacion = (publicacion) => (this.agregar(publicacion))
-    buscarPorUsuario = (nombreUsuario) => (this.publicaciones.filter(p => p.usuario.nombre === nombreUsuario))
+    buscarPorUsuario = (nombreUsuario) => (this.publicaciones.filter(p => p.autor.nombre === nombreUsuario))
     cantidadTotal = () => (this.publicaciones.length)
     listarResumenes = () => (this.publicaciones.map(p => p.mostrarResumen()))
     filtrarPorTipo = (claseConstructor) => (this.publicaciones.filter(p => p instanceof claseConstructor))

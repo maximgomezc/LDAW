@@ -57,7 +57,7 @@ console.log(repositorio.buscarPorUsuario("seba"));
 const publicacionesActivas = arregloPublicaciones.filter(p => p.activa)
 console.log(publicacionesActivas)
 
-const primeraPublicacion = arregloPublicaciones.find(p => p.usuario.nombre === "luca")
+const primeraPublicacion = arregloPublicaciones.find(p => p.autor.nombre === "luca")
 console.log(primeraPublicacion)
 
 console.log("--- Resúmenes de todas las publicaciones ---");
