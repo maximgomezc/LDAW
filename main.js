@@ -34,6 +34,14 @@ const reglas = { precioMinimo: 1000 };
 
 const repositorio = new RepositorioPublicaciones();
 
+repositorio.on("publicacionAgregada", (publicacion) => {
+    console.log(`[Listener 1] Nueva publicación agregada: ${publicacion.titulo}`);
+});
+
+repositorio.on("publicacionAgregada", (publicacion) => {
+    console.log(`[Listener 2] El autor de la nueva publicación es: ${publicacion.autor.nombre}`);
+});
+
 arregloPublicaciones.forEach(p => {
     if (validarPublicacion(p, reglas)) {
         repositorio.agregar(p);
