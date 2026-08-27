@@ -25,11 +25,20 @@ arregloUsuarios[0].email = "porotos@gmail.com"
 const publicacionKiwi = arregloPublicaciones.find(p => p.titulo === "kiwi");
 publicacionKiwi.activa = false;
 
+const validarPublicacion = (publicacion, reglas) => {
+    if (reglas.precioMinimo && publicacion.precio < reglas.precioMinimo) return false;
+    return true;
+};
+
+const reglas = { precioMinimo: 1000 };
+
 const repositorio = new RepositorioPublicaciones();
 
 arregloPublicaciones.forEach(p => {
-    repositorio.agregar(p);
-    console.log(p.mostrarResumen(), p.estaActiva(p.activa));
+    if (validarPublicacion(p, reglas)) {
+        repositorio.agregar(p);
+        console.log(p.mostrarResumen(), p.estaActiva(p.activa));
+    }
 });
 
 console.log("Cantidad total de publicaciones:");
