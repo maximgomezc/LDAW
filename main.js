@@ -50,3 +50,12 @@ console.log(publicacionesActivas)
 
 const primeraPublicacion = arregloPublicaciones.find(p => p.usuario.nombre === "luca")
 console.log(primeraPublicacion)
+
+console.log("--- Resúmenes de todas las publicaciones ---");
+console.log(repositorio.listarResumenes());
+
+console.log("--- Filtrar por tipo: PublicacionVenta ---");
+console.log(repositorio.filtrarPorTipo(PublicacionVenta));
+
+console.log("--- Filtrar por tipo: PublicacionServicio ---");
+console.log(repositorio.filtrarPorTipo(PublicacionServicio));
