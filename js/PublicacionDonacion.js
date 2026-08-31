@@ -1,4 +1,4 @@
-import Publicacion from './Publicacion.js';
+import Publicacion from './publicacion.js';
 
 class PublicacionDonacion extends Publicacion {
     constructor(titulo, descripcion, autor, motivo) {
