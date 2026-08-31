@@ -13,5 +13,10 @@ class Publicacion {
         return `El título es ${titulo} y el autor es ${autor.nombre}`;
     }
     estaActiva = (activa) => (activa);
+
+    diasPublicada() {
+        const ms = new Date() - this.fechaPublicacion;
+        return Math.floor(ms / (1000 * 60 * 60 * 24));
+    }
 }
 export default Publicacion
