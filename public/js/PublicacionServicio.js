@@ -1,7 +1,7 @@
-import Publicacion from "./js/publicacion.js";
+import Publicacion from "./publicacion.js";
 
-class PublicacionServicio extends Publicacion {
-	constructor(titulo, descripcion, autor, precio, modalidad = "presencial", duracion = 1, cliente = null) {
+export class PublicacionServicio extends Publicacion {
+	constructor(titulo, descripcion, autor, precio, modalidad, duracion, cliente) {
 		super(titulo, descripcion, autor);
 		this.precio = precio;
 		this.modalidad = modalidad;
@@ -10,7 +10,7 @@ class PublicacionServicio extends Publicacion {
 	}
 
 	mostrarResumen() {
-		return `${super.mostrarResumen()} y la modalidad es ${this.modalidad}, con una duración de ${this.duracion} horas`;
+		return `${super.mostrarResumen()} y la modalidad es ${this.modalidad}, con una duración de ${this.duracion} minutos`;
 	}
 }
 

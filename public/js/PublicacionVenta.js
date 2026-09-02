@@ -1,6 +1,6 @@
-import Publicacion from './js/publicacion.js';
+import Publicacion from './publicacion.js';
 
-class PublicacionVenta extends Publicacion {
+export class PublicacionVenta extends Publicacion {
     constructor(titulo, descripcion, autor, precio) {
         super(titulo, descripcion, autor);
         this.precio = precio;
