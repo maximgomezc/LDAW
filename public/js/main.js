@@ -1,6 +1,7 @@
 import {PublicacionVenta} from "./PublicacionVenta.js";
 import {PublicacionServicio} from "./PublicacionServicio.js";
 import {usuario} from "./usuario.js";
+import RepositorioPublicaciones from "./RepositorioPublicaciones.js";
 
 const titulo = document.getElementById("titulo");
 const descripcion = document.getElementById("descripcion");
@@ -56,7 +57,7 @@ function ocultarAyudaEmail() { ayudaEmail.textContent = ""; }
 email.addEventListener("focus", mostrarAyudaEmail);
 email.addEventListener("blur", ocultarAyudaEmail);
 
-const publicaciones = [];
+const repositorio = new RepositorioPublicaciones();
 function agregarTarjeta(publicacion) {
  const tarjeta = document.createElement("article");
  const tituloTarjeta = document.createElement("h2");
@@ -73,7 +74,7 @@ function agregarTarjeta(publicacion) {
  botonDestacar.textContent = "Destacar";
  if (publicacion.destacado) tarjeta.style.border = "2px solid gold";
  
- tarjeta.dataset.id = publicaciones.indexOf(publicacion);
+ tarjeta.dataset.id = repositorio.publicaciones.indexOf(publicacion);
  boton.dataset.accion = "baja";
  botonDestacar.dataset.accion = "destacar";
 
@@ -83,7 +84,7 @@ function agregarTarjeta(publicacion) {
 
 function renderizarPublicaciones() {
  listaPublicaciones.innerHTML = "";
- publicaciones.forEach(p => agregarTarjeta(p));
+ repositorio.publicaciones.forEach(p => agregarTarjeta(p));
 }
 
 function crearPublicacionDesdeFormulario() {
@@ -105,7 +106,7 @@ function crearPublicacionDesdeFormulario() {
 function manejarEnvio(evento) {
  evento.preventDefault();
  const publicacion = crearPublicacionDesdeFormulario();
- publicaciones.push(publicacion);
+ repositorio.agregar(publicacion);
  renderizarPublicaciones();
  formulario.reset();
  actualizarCamposEspecificos();
@@ -119,7 +120,7 @@ function manejarAccion(evento) {
  const tarjeta = boton.closest("[data-id]");
  const id = Number(tarjeta.dataset.id);
  
- const publicacion = publicaciones[id];
+ const publicacion = repositorio.publicaciones[id];
  const accion = boton.dataset.accion;
  
  if (accion === "baja") publicacion.darDeBaja();
