@@ -70,6 +70,11 @@ function agregarTarjeta(publicacion) {
  estado.textContent = "Activa";
  boton.textContent = "Dar de baja";
  botonDestacar.textContent = "Destacar";
+ 
+ tarjeta.dataset.id = publicaciones.indexOf(publicacion);
+ boton.dataset.accion = "baja";
+ botonDestacar.dataset.accion = "destacar";
+
  tarjeta.append(tituloTarjeta, descripcionTarjeta, estado, boton, botonDestacar);
  listaPublicaciones.appendChild(tarjeta);
 
