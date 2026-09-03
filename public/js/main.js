@@ -67,9 +67,11 @@ function agregarTarjeta(publicacion) {
 
  tituloTarjeta.textContent = publicacion.titulo;
  descripcionTarjeta.textContent = publicacion.mostrarResumen();
- estado.textContent = "Activa";
+ estado.textContent = publicacion.activa ? "Activa" : "Inactiva";
  boton.textContent = "Dar de baja";
+ if (!publicacion.activa) boton.disabled = true;
  botonDestacar.textContent = "Destacar";
+ if (publicacion.destacado) tarjeta.style.border = "2px solid gold";
  
  tarjeta.dataset.id = publicaciones.indexOf(publicacion);
  boton.dataset.accion = "baja";
@@ -77,15 +79,11 @@ function agregarTarjeta(publicacion) {
 
  tarjeta.append(tituloTarjeta, descripcionTarjeta, estado, boton, botonDestacar);
  listaPublicaciones.appendChild(tarjeta);
+}
 
-    function manejarBaja(evento) {
-    console.log(evento.type, evento.target);
-    publicacion.darDeBaja();
-    estado.textContent = "Inactiva";
-    boton.disabled = true;
-    }
-    boton.addEventListener("click", manejarBaja);
-
+function renderizarPublicaciones() {
+ listaPublicaciones.innerHTML = "";
+ publicaciones.forEach(p => agregarTarjeta(p));
 }
 
 function crearPublicacionDesdeFormulario() {
@@ -108,7 +106,7 @@ function manejarEnvio(evento) {
  evento.preventDefault();
  const publicacion = crearPublicacionDesdeFormulario();
  publicaciones.push(publicacion);
- agregarTarjeta(publicacion);
+ renderizarPublicaciones();
  formulario.reset();
  actualizarCamposEspecificos();
  actualizarVistaPrevia();
@@ -120,6 +118,13 @@ function manejarAccion(evento) {
  if (!boton || !listaPublicaciones.contains(boton)) return;
  const tarjeta = boton.closest("[data-id]");
  const id = Number(tarjeta.dataset.id);
- console.log(id, boton.dataset.accion);
+ 
+ const publicacion = publicaciones[id];
+ const accion = boton.dataset.accion;
+ 
+ if (accion === "baja") publicacion.darDeBaja();
+ if (accion === "destacar") publicacion.destacar();
+ 
+ renderizarPublicaciones();
 }
 listaPublicaciones.addEventListener("click", manejarAccion);
