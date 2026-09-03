@@ -7,6 +7,7 @@ class Publicacion {
        this.autor= autor //objeto usuario
        this.fechaPublicacion= new Date()
        this.activa= true
+       this.destacado= false
     }
 
     mostrarResumen(titulo = this.titulo, autor = this.autor) {
@@ -19,5 +20,7 @@ class Publicacion {
         return Math.floor(ms / (1000 * 60 * 60 * 24));
     }
     darDeBaja() { this.activa = false; }
+    destacar() { this.destacado = true; }
+    opacar() { this.destacado = false; }
 }
 export default Publicacion

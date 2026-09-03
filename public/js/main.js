@@ -63,12 +63,14 @@ function agregarTarjeta(publicacion) {
  const descripcionTarjeta = document.createElement("p");
  const estado = document.createElement("span");
  const boton = document.createElement("button");
+ const botonDestacar = document.createElement("button");
 
  tituloTarjeta.textContent = publicacion.titulo;
  descripcionTarjeta.textContent = publicacion.mostrarResumen();
  estado.textContent = "Activa";
  boton.textContent = "Dar de baja";
- tarjeta.append(tituloTarjeta, descripcionTarjeta, estado, boton);
+ botonDestacar.textContent = "Destacar";
+ tarjeta.append(tituloTarjeta, descripcionTarjeta, estado, boton, botonDestacar);
  listaPublicaciones.appendChild(tarjeta);
 
     function manejarBaja(evento) {
@@ -107,3 +109,9 @@ function manejarEnvio(evento) {
  actualizarVistaPrevia();
 }
 formulario.addEventListener("submit", manejarEnvio);
+
+function observarClick(evento) {
+ console.log("target", evento.target);
+ console.log("currentTarget", evento.currentTarget);
+}
+listaPublicaciones.addEventListener("click", observarClick);
