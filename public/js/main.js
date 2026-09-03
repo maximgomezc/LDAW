@@ -115,8 +115,11 @@ function manejarEnvio(evento) {
 }
 formulario.addEventListener("submit", manejarEnvio);
 
-function observarClick(evento) {
- console.log("target", evento.target);
- console.log("currentTarget", evento.currentTarget);
+function manejarAccion(evento) {
+ const boton = evento.target.closest("button[data-accion]");
+ if (!boton || !listaPublicaciones.contains(boton)) return;
+ const tarjeta = boton.closest("[data-id]");
+ const id = Number(tarjeta.dataset.id);
+ console.log(id, boton.dataset.accion);
 }
-listaPublicaciones.addEventListener("click", observarClick);
+listaPublicaciones.addEventListener("click", manejarAccion);
