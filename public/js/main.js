@@ -129,3 +129,10 @@ function manejarAccion(evento) {
  renderizarPublicaciones();
 }
 listaPublicaciones.addEventListener("click", manejarAccion);
+
+function esperar(ms) {
+ return new Promise(resolve => {
+ setTimeout(resolve, ms);
+ });
+}
+window.esperar = esperar;
