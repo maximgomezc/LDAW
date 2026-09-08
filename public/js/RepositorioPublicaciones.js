@@ -15,6 +15,12 @@ class RepositorioPublicaciones extends EventEmitter {
     listarResumenes = () => (this.publicaciones.map(p => p.mostrarResumen()))
     filtrarPorTipo = (claseConstructor) => (this.publicaciones.filter(p => p instanceof claseConstructor))
 
+    cargarDesde = (datos) => {
+        this.publicaciones = [];
+        datos.forEach(d => {
+            this.agregar(d); 
+        });
+    }
 }
 
 export default RepositorioPublicaciones;

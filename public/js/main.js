@@ -13,6 +13,9 @@ const camposEspecificos = document.getElementById("campos-especificos");
 const ayudaEmail = document.getElementById("ayuda-email");
 const formulario = document.getElementById("form-publicacion");
 const listaPublicaciones = document.getElementById("lista-publicaciones");
+const estado = document.getElementById("estado");
+const botonActualizar = document.getElementById("botonActualizar");
+const botonForzarError = document.getElementById("botonForzarError");
 
 function observarEvento(evento) {
  console.table({
@@ -136,3 +139,24 @@ function esperar(ms) {
  });
 }
 window.esperar = esperar;
+
+async function cargarPublicaciones(forzarError = false) {
+ estado.textContent = "Cargando publicaciones...";
+ botonActualizar.disabled = true;
+ try {
+ const url = forzarError ? "/api/publicaciones?error=1" : "/api/publicaciones";
+ const respuesta = await fetch(url);
+ if (!respuesta.ok) throw new Error("La respuesta no fue exitosa");
+ const datos = await respuesta.json();
+ repositorio.cargarDesde(datos);
+ renderizarPublicaciones();
+ estado.textContent = `${datos.length} publicaciones recibidas`;
+ } catch (error) {
+ estado.textContent = `Error: ${error.message}`;
+ } finally {
+ botonActualizar.disabled = false;
+ }
+}
+
+botonActualizar.addEventListener("click", () => cargarPublicaciones(false));
+botonForzarError.addEventListener("click", () => cargarPublicaciones(true));
