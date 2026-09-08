@@ -142,14 +142,24 @@ function crearPublicacionDesdeFormulario() {
  null
  );
 }
-function manejarEnvio(evento) {
+async function manejarEnvio(evento) {
  evento.preventDefault();
+ if (!validarTitulo(true)) return;
+ enviar.disabled = true;
+ estado.textContent = "Publicando...";
+ try {
+ await esperar(800);
  const publicacion = crearPublicacionDesdeFormulario();
  repositorio.agregar(publicacion);
  renderizarPublicaciones();
+ estado.textContent = "Publicación agregada";
  formulario.reset();
- actualizarCamposEspecificos();
  actualizarVistaPrevia();
+ } catch (error) {
+ estado.textContent = `Error: ${error.message}`;
+ } finally {
+ actualizarEstadoFormulario();
+ }
 }
 formulario.addEventListener("submit", manejarEnvio);
 
