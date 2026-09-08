@@ -61,14 +61,13 @@ function validarPrecio(mostrarError = true) {
  return valido;
 }
 
+const contador = document.getElementById("contador");
 function actualizarVistaPrevia() {
- const nombre = autor.value || "Autor";
- const texto = titulo.value || "Sin título";
- vistaPrevia.textContent = `${texto} — ${nombre} (${tipo.value})`;
+ contador.textContent = descripcion.value.length;
+ vistaPrevia.textContent = `${titulo.value || "Sin título"} — ` +
+ `${autor.value || "..."} (${tipo.value})`;
 }
-titulo.addEventListener("input", actualizarVistaPrevia);
-autor.addEventListener("input", actualizarVistaPrevia);
-tipo.addEventListener("change", actualizarVistaPrevia);
+[titulo, autor, descripcion, tipo].forEach(control => control.addEventListener("input", actualizarVistaPrevia));
 
 function actualizarCamposEspecificos() {
  if (tipo.value === "venta") {
