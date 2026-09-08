@@ -196,3 +196,19 @@ async function cargarPublicaciones(forzarError = false) {
 
 botonActualizar.addEventListener("click", () => cargarPublicaciones(false));
 botonForzarError.addEventListener("click", () => cargarPublicaciones(true));
+
+const enviar = document.getElementById("enviar");
+
+function formularioValido() {
+ const precioInput = document.getElementById("precio");
+ const precioValido = tipo.value !== "venta" || (precioInput && Number(precioInput.value) > 0);
+ return titulo.value.trim().length >= 5
+ && autor.value.trim().length >= 3
+ && precioValido;
+}
+
+function actualizarEstadoFormulario() {
+ enviar.disabled = !formularioValido();
+}
+
+formulario.addEventListener("input", actualizarEstadoFormulario);
