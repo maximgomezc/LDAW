@@ -13,6 +13,12 @@ class Publicacion {
     mostrarResumen(titulo = this.titulo, autor = this.autor) {
         return `El título es ${titulo} y el autor es ${autor.nombre}`;
     }
+    
+    get resumen() {
+        const estado = this.activa ? "Activa" : "Inactiva";
+        return `${this.titulo} — ${this.autor.nombre} (${estado})`;
+    }
+
     estaActiva = (activa) => (activa);
 
     diasPublicada() {
