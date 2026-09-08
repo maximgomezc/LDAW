@@ -16,6 +16,8 @@ const listaPublicaciones = document.getElementById("lista-publicaciones");
 const estado = document.getElementById("estado");
 const botonActualizar = document.getElementById("botonActualizar");
 const botonForzarError = document.getElementById("botonForzarError");
+const errorTitulo = document.getElementById("errorTitulo");
+const errorAutor = document.getElementById("errorAutor");
 
 function observarEvento(evento) {
  console.table({
@@ -27,6 +29,37 @@ function observarEvento(evento) {
 }
 titulo.addEventListener("input", observarEvento);
 tipo.addEventListener("change", observarEvento);
+
+function validarTitulo(mostrarError = true) {
+ const valido = titulo.value.trim().length >= 5;
+ titulo.classList.toggle("valido", valido);
+ titulo.classList.toggle("invalido", !valido && mostrarError);
+ errorTitulo.textContent = !valido && mostrarError ? "Ingrese al menos 5 caracteres" : "";
+ return valido;
+}
+titulo.addEventListener("input", () => validarTitulo(false));
+titulo.addEventListener("blur", () => validarTitulo(true));
+
+function validarAutor(mostrarError = true) {
+ const valido = autor.value.trim().length >= 3;
+ autor.classList.toggle("valido", valido);
+ autor.classList.toggle("invalido", !valido && mostrarError);
+ errorAutor.textContent = !valido && mostrarError ? "Ingrese al menos 3 caracteres" : "";
+ return valido;
+}
+autor.addEventListener("input", () => validarAutor(false));
+autor.addEventListener("blur", () => validarAutor(true));
+
+function validarPrecio(mostrarError = true) {
+ const precio = document.getElementById("precio");
+ if (!precio) return true;
+ const errorPrecio = document.getElementById("errorPrecio");
+ const valido = Number(precio.value) > 0;
+ precio.classList.toggle("valido", valido);
+ precio.classList.toggle("invalido", !valido && mostrarError);
+ errorPrecio.textContent = !valido && mostrarError ? "El precio debe ser mayor a 0" : "";
+ return valido;
+}
 
 function actualizarVistaPrevia() {
  const nombre = autor.value || "Autor";
@@ -41,7 +74,11 @@ function actualizarCamposEspecificos() {
  if (tipo.value === "venta") {
  camposEspecificos.innerHTML = `
  <input id="precio" type="number" placeholder="Precio">
+ <small id="errorPrecio"></small>
  <input id="stock" type="number" value="1">`;
+ const precio = document.getElementById("precio");
+ precio.addEventListener("input", () => validarPrecio(false));
+ precio.addEventListener("blur", () => validarPrecio(true));
  } else {
  camposEspecificos.innerHTML = `
  <select id="modalidad">
