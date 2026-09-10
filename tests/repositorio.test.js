@@ -1,7 +1,7 @@
-import { RepositorioPublicaciones } from "../js/RepositorioPublicaciones.js";
-import { Publicacion } from "../js/publicacion.js";
-import { PublicacionVenta } from "../js/PublicacionVenta.js";
-import { PublicacionServicio } from "../js/PublicacionServicio.js";
+import { RepositorioPublicaciones } from "../src/RepositorioPublicaciones.js";
+import { Publicacion } from "../src/publicacion.js";
+import { PublicacionVenta } from "../src/PublicacionVenta.js";
+import { PublicacionServicio } from "../src/PublicacionServicio.js";
 
 describe("RepositorioPublicaciones", () => {
     test("buscarPorEtiqueta devuelve coincidencias activas", () => {

@@ -1,4 +1,4 @@
-import usuario from "./usuario.js"
+import {Reporte} from "./Reporte.js";
 
 export class Publicacion {
     constructor(titulo, descripcion, autor) {
@@ -9,6 +9,8 @@ export class Publicacion {
        this.activa= true
        this.destacado= false
        this.etiquetas= []
+       this.reportes = [];
+       this.estado = "pendiente";
     }
 
     mostrarResumen(titulo = this.titulo, autor = this.autor) {
@@ -46,5 +48,17 @@ export class Publicacion {
     darDeBaja() { this.activa = false; }
     destacar() { this.destacado = true; }
     opacar() { this.destacado = false; }
+
+    reportar(usuario, motivo) {
+    const yaReporto = this.reportes.some(r => r.usuario === usuario);
+    if (yaReporto) {
+    throw new Error("El usuario ya reportó esta publicación");
+    }
+    this.reportes.push(new Reporte(usuario, motivo));
+    }
+    requiereRevision() {
+    return this.reportes.length >= 3;
+    }
+
 }
 export default Publicacion

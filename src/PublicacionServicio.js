@@ -15,4 +15,3 @@ export class PublicacionServicio extends Publicacion {
 }
 
 export default PublicacionServicio;
-   

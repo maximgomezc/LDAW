@@ -1,4 +1,4 @@
-import Publicacion from "../js/publicacion.js";
+import Publicacion from "../src/publicacion.js";
 describe("Publicacion", () => {
     test("una publicación nueva comienza activa y sin etiquetas", () => {
     const publicacion = new Publicacion("Ana", "Apuntes de Redes", "...");
@@ -30,7 +30,4 @@ describe("Publicacion", () => {
     publicacion.agregarEtiqueta("Redes");
     expect(publicacion.tieneEtiqueta("redes")).toBe(true);
     });
-
 });
-
-

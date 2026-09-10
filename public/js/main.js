@@ -1,7 +1,7 @@
-import {PublicacionVenta} from "./PublicacionVenta.js";
-import {PublicacionServicio} from "./PublicacionServicio.js";
-import {usuario} from "./usuario.js";
-import {RepositorioPublicaciones} from "./RepositorioPublicaciones.js";
+import {PublicacionVenta} from "../../src/PublicacionVenta.js";
+import {PublicacionServicio} from "../../src/PublicacionServicio.js";
+import {usuario} from "../../src/usuario.js";
+import {RepositorioPublicaciones} from "../../src/RepositorioPublicaciones.js";
 
 const titulo = document.getElementById("titulo");
 const descripcion = document.getElementById("descripcion");

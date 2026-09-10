@@ -1,6 +1,6 @@
 export class RepositorioPublicaciones {
-    constructor(publicaciones = []) {
-        this.publicaciones = publicaciones
+    constructor() {
+        this.publicaciones = []
     }
 
     agregar(publicacion) {
@@ -11,6 +11,9 @@ export class RepositorioPublicaciones {
         return this.publicaciones.filter(publicacion =>
         publicacion.activa && publicacion.tieneEtiqueta(etiqueta)
         );
+    }
+    pendientesDeRevision() {
+        return this.publicaciones.filter(p => p.activa && p.requiereRevision());
     }
 }
 
