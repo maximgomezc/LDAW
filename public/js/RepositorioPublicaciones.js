@@ -1,25 +1,16 @@
-import { EventEmitter } from "node:events";
-
-class RepositorioPublicaciones extends EventEmitter {
+export class RepositorioPublicaciones {
     constructor(publicaciones = []) {
-        super();
         this.publicaciones = publicaciones
     }
-    agregar = (publicacion) => {
-        this.publicaciones.push(publicacion);
-        this.emit("publicacionAgregada", publicacion);
-    }
-    agregarPublicacion = (publicacion) => (this.agregar(publicacion))
-    buscarPorUsuario = (nombreUsuario) => (this.publicaciones.filter(p => p.autor.nombre === nombreUsuario))
-    cantidadTotal = () => (this.publicaciones.length)
-    listarResumenes = () => (this.publicaciones.map(p => p.mostrarResumen()))
-    filtrarPorTipo = (claseConstructor) => (this.publicaciones.filter(p => p instanceof claseConstructor))
 
-    cargarDesde = (datos) => {
-        this.publicaciones = [];
-        datos.forEach(d => {
-            this.agregar(d); 
-        });
+    agregar(publicacion) {
+        this.publicaciones.push(publicacion);
+    }
+
+    buscarPorEtiqueta(etiqueta) {
+        return this.publicaciones.filter(publicacion =>
+        publicacion.activa && publicacion.tieneEtiqueta(etiqueta)
+        );
     }
 }
 

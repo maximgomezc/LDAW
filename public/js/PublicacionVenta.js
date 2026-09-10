@@ -8,7 +8,7 @@ export class PublicacionVenta extends Publicacion {
     }
 
     mostrarResumen() {
-        return `${super.mostrarResumen()} y el precio es ${this.precio}`;
+        return `${super.mostrarResumen()} y el precio es $${this.precio}`;
     }
 }
 

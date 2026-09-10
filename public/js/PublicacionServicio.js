@@ -10,7 +10,7 @@ export class PublicacionServicio extends Publicacion {
 	}
 
 	mostrarResumen() {
-		return `${super.mostrarResumen()} y la modalidad es ${this.modalidad}, con una duración de ${this.duracion} minutos`;
+		return `${super.mostrarResumen()} (${this.descripcion}) y la modalidad es ${this.modalidad}, con una duración de ${this.duracion} minutos`;
 	}
 }
 

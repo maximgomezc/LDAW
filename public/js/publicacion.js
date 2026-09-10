@@ -1,6 +1,6 @@
 import usuario from "./usuario.js"
 
-class Publicacion {
+export class Publicacion {
     constructor(titulo, descripcion, autor) {
        this.titulo= titulo 
        this.descripcion= descripcion
@@ -8,12 +8,30 @@ class Publicacion {
        this.fechaPublicacion= new Date()
        this.activa= true
        this.destacado= false
+       this.etiquetas= []
     }
 
     mostrarResumen(titulo = this.titulo, autor = this.autor) {
         return `El título es ${titulo} y el autor es ${autor.nombre}`;
     }
-    
+
+    agregarEtiqueta(etiqueta) {
+        const normalizada = etiqueta.trim();
+        if (!normalizada) {
+        throw new Error("Etiqueta inválida");
+        }
+        const yaExiste = this.tieneEtiqueta(normalizada);
+        if (!yaExiste) {
+        this.etiquetas.push(normalizada);
+        }
+    }
+
+    tieneEtiqueta(etiqueta) {
+        const buscada = etiqueta.trim().toLowerCase();
+        return this.etiquetas.some(e => e.toLowerCase() === buscada);
+    }
+
+
     get resumen() {
         const estado = this.activa ? "Activa" : "Inactiva";
         return `${this.titulo} — ${this.autor.nombre} (${estado})`;

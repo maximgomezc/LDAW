@@ -1,7 +1,7 @@
 import {PublicacionVenta} from "./PublicacionVenta.js";
 import {PublicacionServicio} from "./PublicacionServicio.js";
 import {usuario} from "./usuario.js";
-import RepositorioPublicaciones from "./RepositorioPublicaciones.js";
+import {RepositorioPublicaciones} from "./RepositorioPublicaciones.js";
 
 const titulo = document.getElementById("titulo");
 const descripcion = document.getElementById("descripcion");
@@ -97,6 +97,7 @@ email.addEventListener("focus", mostrarAyudaEmail);
 email.addEventListener("blur", ocultarAyudaEmail);
 
 const repositorio = new RepositorioPublicaciones();
+window.repositorio = repositorio
 function agregarTarjeta(publicacion) {
  const tarjeta = document.createElement("article");
  const tituloTarjeta = document.createElement("h2");
@@ -151,6 +152,7 @@ async function manejarEnvio(evento) {
  await esperar(800);
  const publicacion = crearPublicacionDesdeFormulario();
  repositorio.agregar(publicacion);
+ window.publicacionActual = publicacion;
  renderizarPublicaciones();
  estado.textContent = "Publicación agregada";
  formulario.reset();
