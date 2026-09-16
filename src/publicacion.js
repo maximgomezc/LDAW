@@ -60,5 +60,19 @@ export class Publicacion {
     return this.reportes.length >= 3;
     }
 
+    async revisar(servicioModeracion) {
+        const decision = await servicioModeracion.evaluar(this);
+
+        if (decision === "aprobado") {
+            this.estado = "aprobada";
+        } else if (decision === "rechazado") {
+            this.estado = "rechazada";
+        } else {
+            throw new Error("Decisión de moderación inválida");
+        }
+
+        return this.estado;
+    }
+
 }
 export default Publicacion
