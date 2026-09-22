@@ -15,6 +15,11 @@ export class RepositorioPublicaciones {
     pendientesDeRevision() {
         return this.publicaciones.filter(p => p.activa && p.requiereRevision());
     }
+    obtenerEstado() {
+        const activas = this.publicaciones.filter(p => p.activa).length;
+        return `Publicaciones activas: ${activas}`;
+    }
+
 }
 
 export default RepositorioPublicaciones;

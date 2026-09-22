@@ -16,6 +16,8 @@ const listaPublicaciones = document.getElementById("lista-publicaciones");
 const estado = document.getElementById("estado");
 const botonActualizar = document.getElementById("botonActualizar");
 const botonForzarError = document.getElementById("botonForzarError");
+const consultar = document.getElementById("consultar");
+const parrafoEstado = document.getElementById("parrafo-estado");
 const errorTitulo = document.getElementById("errorTitulo");
 const errorAutor = document.getElementById("errorAutor");
 
@@ -208,6 +210,20 @@ async function cargarPublicaciones(forzarError = false) {
 
 botonActualizar.addEventListener("click", () => cargarPublicaciones(false));
 botonForzarError.addEventListener("click", () => cargarPublicaciones(true));
+
+consultar.addEventListener("click", async () => {
+ parrafoEstado.textContent = "Consultando...";
+ try {
+ const respuesta = await fetch("/estado-comunidad");
+ if (!respuesta.ok) {
+ throw new Error("La respuesta no fue exitosa");
+ }
+ const texto = await respuesta.text();
+ parrafoEstado.textContent = texto;
+ } catch (error) {
+ parrafoEstado.textContent = `No se pudo consultar el estado: ${error.message}`;
+ }
+});
 
 const enviar = document.getElementById("enviar");
 
