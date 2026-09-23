@@ -7,30 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    <form id="form-publicacion">
-        <input id="titulo" placeholder="Título" required>
-        <small id="errorTitulo"></small>
-        <textarea id="descripcion" placeholder="Descripción"></textarea>
-        <small id="contador"></small>
-        <input id="autor" placeholder="Nombre del autor" required>
-        <small id="errorAutor"></small>
-        <input id="email" type="email" placeholder="Email" required>
-        <small id="ayuda-email"></small>
-        <select id="tipo">
-            <option value="venta">Venta</option>
-            <option value="servicio">Servicio</option>
-        </select>
-        <div id="campos-especificos"></div>
-        <button id="enviar" disabled>Publicar</button>
+    <form id="pedido" action="/publicaciones" method="post">
+        <label>Autor <input name="autor" required></label>
+        <label>Título <input name="titulo" minlength="5" maxlength="80" required></label>
+        <label>Descripcion <textarea name="descripcion" minlength="20" maxlength="500" required></textarea></label>
+        <label>Categoría
+            <select name="categoria" required>
+                <option value="general">General</option>
+                <option value="aviso">Aviso</option>
+                <option value="evento">Evento</option>
+                <option value="compraventa">Compra-venta</option>
+            </select>
+        </label>
+        <button>Publicar</button>
     </form>
-    <div id="estado"></div>
-    <button id="botonActualizar">Actualizar</button>
-    <button id="botonForzarError">Forzar error</button>
-    <button id="consultar">Consultar estado</button>
-    <p id="parrafo-estado"></p>
-    
-    <output id="vista-previa"></output>
-    <section id="lista-publicaciones"></section>
+    <p id="salida"></p>
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>
